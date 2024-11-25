@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { db, auth } from "../firebase/config";
-
+import firebase from 'firebase';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Posts extends Component {
   constructor(props) {
@@ -27,6 +28,22 @@ class Posts extends Component {
       });
   }
 
+  handleLike = (postId, likes) => {
+    const user = auth.currentUser.email;
+    if (likes.includes(user)) {
+      db.collection('posts')
+        .doc(postId)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayRemove(user),
+        });
+    } else {
+      db.collection('posts')
+        .doc(postId)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayUnion(user),
+        });
+    }
+  };
   render() {
     const { posts, loading } = this.state;
 
@@ -42,7 +59,19 @@ class Posts extends Component {
               <View>
                 <Text>{item.data.email}</Text>
                 <Text>{item.data.posteo}</Text>
-                aca pegar
+                <TouchableOpacity
+                  style={styles.likeButton}
+                  onPress={() => this.handleLike(item.id, item.data.likes)}
+                >
+                  <Icon
+                    name={item.data.likes.includes(auth.currentUser.email) ? 'heart' : 'heart-o'} 
+                    size={24} 
+                    color='#28a745'  
+                  />
+                </TouchableOpacity>
+                <Text >
+                  {item.data.likes.length} {item.data.likes.length === 1 ? 'like' : 'likes'}
+                </Text>
               </View>
             )}
           />
