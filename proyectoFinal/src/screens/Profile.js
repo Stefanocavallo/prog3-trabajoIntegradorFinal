@@ -55,6 +55,7 @@ class Profile extends Component {
             }
         });
     }
+
     handleEliminarPost = (idPost) => {
         db.collection("posts")
             .doc(idPost)
@@ -66,6 +67,7 @@ class Profile extends Component {
                 console.log(error);
             })
     }
+
     handleLogOut = () => {
         auth.signOut()
             .then(() => {
@@ -76,6 +78,7 @@ class Profile extends Component {
                 console.error(error);
             })
     }
+
     render() {
         return (
             <View>
@@ -85,7 +88,7 @@ class Profile extends Component {
                 <Text>Mi perfil</Text>
                 <View>
                     <Text>Email: {this.state.emailUser}</Text>
-                    <Text>Nombre de Usuario: {this.state.user}</Text>
+                    <Text>Nombre de Usuario: {this.state.userName}</Text>
                     <Text>Publicaciones realizadas: {this.state.userPosts.length}</Text>
                 </View>
                 <FlatList
@@ -99,7 +102,7 @@ class Profile extends Component {
                         <View>
                             <Text>Likeado por {item.data.likes ? item.data.likes.length : 0}</Text>
                             <View>
-                                {(auth.currentUser.mailUser === item.data.email) && (
+                                {(auth.currentUser.emailUser === item.data.email) && (
                                        <TouchableOpacity onPress={() => this.deletePost(item.id)}>
                                        <Text>Eliminar post</Text>
                                    </TouchableOpacity>
