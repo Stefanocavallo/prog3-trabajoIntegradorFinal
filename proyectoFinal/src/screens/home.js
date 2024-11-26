@@ -50,6 +50,7 @@ class Home extends Component  {
       if (this.state.posts.length === 0) {
         return (
             <View>
+                <Text>¡Bienvenido!</Text>
                 <Text>No hay novedades</Text>
             </View>
         );

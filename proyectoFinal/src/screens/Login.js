@@ -20,7 +20,7 @@ class Login extends Component {
   handleSubmit() {
     auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((response) => this.setState({ logued: true }))
+      .then(() => this.setState({ logued: true }))
       .then(() => this.props.navigation.navigate("HomeMenu"))
       .catch((error) => this.setState({ error: "Fallo en el login" }));
   }
