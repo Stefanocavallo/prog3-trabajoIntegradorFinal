@@ -51,14 +51,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f5f5f5", // Fondo claro para la vista
+    backgroundColor: "#f5f5f5",
   },
   heading: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
-    color: "#333", // Color del texto principal
+    color: "#333",
   },
   textInput: {
     height: 50,
@@ -67,17 +67,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 15,
-    backgroundColor: "#fff", // Fondo blanco para el campo de texto
+    backgroundColor: "#fff",
   },
   button: {
-    backgroundColor: "#51B9E9", // Azul claro
+    backgroundColor: "#51B9E9", 
     padding: 12,
     borderRadius: 8,
     alignItems: "center",
     marginVertical: 10,
   },
   buttonText: {
-    color: "#fff", // Texto blanco
+    color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
   },

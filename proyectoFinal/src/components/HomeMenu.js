@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { auth } from "../firebase/config";
+import { StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/home';
 import Profile from '../screens/Profile';
