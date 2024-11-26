@@ -28,6 +28,18 @@ export default class userSearch extends Component {
         });
     }
 
+    handleSearch = () => {
+        const { query, users } = this.state;
+        if (query.trim() !== "") {
+          const filtered = users.filter(user =>
+            user.userName.toLowerCase() === query.toLowerCase() 
+          );
+          this.setState({ filteredUsers: filtered });
+        } else {
+          this.setState({ filteredUsers: users });
+        }
+      }
+
     tipear(input){
         this.setState({
             search: input
@@ -41,12 +53,11 @@ export default class userSearch extends Component {
         
         return (
 
-        <View style={styles.container}>
+        <View>
 
-            <Text style={styles.title}>Busca a un usuario</Text>
+            <Text>Busca a un usuario</Text>
             
             <TextInput
-                style = {styles.input}
                 placeholder = "Ingrese el nombre de usuario a buscar"
                 keyboardType='default'
                 onChangeText = {event => this.tipear(event)}
@@ -59,7 +70,7 @@ export default class userSearch extends Component {
                 data={filtrarUsers}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <Text style={styles.user}>{item.data.username}</Text>
+                    <Text>{item.data.username}</Text>
                 )}
             />
             }

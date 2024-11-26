@@ -37,7 +37,7 @@ class Login extends Component {
           value={this.state.email}
         />
         <TextInput
-          placeholder="Ingrese su contrasena"
+          placeholder="Ingrese su contrasena (min 6 car.)"
           secureTextEntry={true}
           onChangeText={(text) => this.setState({ password: text })}
           value={this.state.password}
