@@ -17,7 +17,7 @@ class Posts extends Component {
     db.collection('posts')
       .orderBy('createdAt', 'desc')
       .onSnapshot(docs => {
-        let arrayPosts = [];
+        const arrayPosts = [];
         docs.forEach(doc => {
           arrayPosts.push({
             id: doc.id,

@@ -3,15 +3,15 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import { db, auth } from '../firebase/config'
 
 class Posts extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state= {
+    this.state = {
       descPost: "",
     }
-  }  
+  }
 
-  crearPosteo(descPost, urlImagen) {
-    if(descPost === ""){
+  crearPosteo(descPost) {
+    if (descPost === "") {
       return "No puedes crear un posteo vacio"
     }
     db.collection("posteos").add({
@@ -21,28 +21,28 @@ class Posts extends Component {
       likes: [],
       comentarios: [],
     }).then(this.props.navigation.navigate("Home"))
-    .catch(e => console.log(e))
+      .catch(e => console.log(e))
   }
 
   render() {
     return (
       <View>
-       <TextInput
-       style={styles.input}
-       placeholder='Agrega una descripción para tu posteo'
-       value={this.state.descPost}
-       onChangeText={(text) => this.setState({descPost: text})}
-       />
-       <TouchableOpacity onPress={()=> this.crearPosteo(this.state.descPost)}>
+        <TextInput
+          style={styles.input}
+          placeholder='Agrega una descripción para tu posteo'
+          value={this.state.descPost}
+          onChangeText={(text) => this.setState({ descPost: text })}
+        />
+        <TouchableOpacity onPress={() => this.crearPosteo(this.state.descPost)}>
           <Text>Crear Posteo</Text>
-       </TouchableOpacity>
+        </TouchableOpacity>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  input:{
+  input: {
     borderWitdh: 2,
   }
 })

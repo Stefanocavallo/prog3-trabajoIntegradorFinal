@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { auth, db } from "../firebase/config";
 
 class Login extends Component {
@@ -21,7 +21,7 @@ class Login extends Component {
     auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((response) => this.setState({ logued: true }))
-      .then(() => this.props.navigation.navigate("Menu"))
+      .then(() => this.props.navigation.navigate("HomeMenu"))
       .catch((error) => this.setState({ error: "Fallo en el login" }));
   }
   

@@ -23,10 +23,10 @@ class Profile extends Component {
                     docs => {
                         docs.forEach(
                             doc => {
-                                if (doc.data().owner === mailUser) {
+                                if (doc.data().email) {
                                     this.setState({
-                                        emailUser: doc.data().owner,
-                                        userName: doc.data().username
+                                        emailUser: doc.data().email,
+                                        userName: doc.data().username,
                                     });
                                 }
                             }
@@ -78,30 +78,30 @@ class Profile extends Component {
     }
     render() {
         return (
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.register} onPress={this.handleLogOut}>
-                    <Text style={styles.buttonText}>Cerrar sesión</Text>
+            <View>
+                <TouchableOpacity onPress={this.handleLogOut}>
+                    <Text >Cerrar sesión</Text>
                 </TouchableOpacity>
-                <Text style={styles.opciones}>Mi perfil</Text>
-                <View style={styles.infoPerfil}>
-                    <Text style={styles.datosPerfil}>Email: {this.state.emailUser}</Text>
-                    <Text style={styles.datosPerfil}>Nombre de Usuario: {this.state.user}</Text>
-                    <Text style={styles.datosPerfil}>Publicaciones realizadas: {this.state.userPosts.length}</Text>
+                <Text>Mi perfil</Text>
+                <View>
+                    <Text>Email: {this.state.emailUser}</Text>
+                    <Text>Nombre de Usuario: {this.state.user}</Text>
+                    <Text>Publicaciones realizadas: {this.state.userPosts.length}</Text>
                 </View>
                 <FlatList
                     data={this.state.userPosts}
                     keyExtractor={(item) => item.id}
                     renderItemtem={({ item }) => (
-                        <View style={styles.postCard}>
-                        <View style={styles.cardHeader}>
-                            <Text style={styles.userName}>{item.data.userName}</Text>
+                        <View>
+                        <View>
+                            <Text>{item.data.userName}</Text>
                         </View>
-                        <View style={styles.footer}>
-                            <Text style={styles.likes}>Likeado por {item.data.likes ? item.data.likes.length : 0}</Text>
-                            <View style={styles.iconContainer}>
+                        <View>
+                            <Text>Likeado por {item.data.likes ? item.data.likes.length : 0}</Text>
+                            <View>
                                 {(auth.currentUser.mailUser === item.data.email) && (
-                                       <TouchableOpacity style={styles.borrar} onPress={() => this.deletePost(item.id)}>
-                                       <Text style={styles.boronBorrar}>Eliminar post</Text>
+                                       <TouchableOpacity onPress={() => this.deletePost(item.id)}>
+                                       <Text>Eliminar post</Text>
                                    </TouchableOpacity>
                                 )}
                             </View>

@@ -25,7 +25,7 @@ class Register extends Component {
 
   handleSubmit() {
     auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then((response) =>
+      .then(() =>
         this.setState({ registered: true }),
         db.collection("users").add({
           email: this.state.email,
@@ -54,11 +54,6 @@ class Register extends Component {
           onChangeText={text => this.setState({ email: text })}
           value={this.state.email} />
         <TextInput
-          keyboardType="default"
-          placeholder="ingrese una bio"
-          onChangeText={text => this.setState({ bio: text })}
-          value={this.state.bio} />
-        <TextInput
           placeholder="Ingrese su contraseña"
           secureTextEntry={true}
           onChangeText={text => this.setState({ password: text })}
@@ -68,7 +63,6 @@ class Register extends Component {
           style={[styles.button, styles.buttonSecondary]} >
           <Text>Acceder</Text>
         </TouchableOpacity>
-        <Text>Navegación cruzada a Login: </Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Login")}
           style={styles.button}
