@@ -3,8 +3,8 @@ import { StyleSheet, Text, TextInput, View, FlatList, ActivityIndicator, Touchab
 import { auth, db } from "../firebase/config";
 
 class Login extends Component {
-  constructor(p) {
-    super(p);
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: "",
@@ -20,7 +20,7 @@ class Login extends Component {
   handleSubmit() {
     auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.setState({ logued: true }))
+      .then((response) => this.setState({ logued: true }))
       .then(() => this.props.navigation.navigate("HomeMenu"))
       .catch((error) => this.setState({ error: "Fallo en el login" }));
   }

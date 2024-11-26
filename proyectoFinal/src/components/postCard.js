@@ -4,7 +4,7 @@ import { db, auth } from "../firebase/config";
 import firebase from 'firebase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class Posts extends Component {
+class PostCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class Posts extends Component {
     db.collection('posts')
       .orderBy('createdAt', 'desc')
       .onSnapshot(docs => {
-        const arrayPosts = [];
+        let arrayPosts = [];
         docs.forEach(doc => {
           arrayPosts.push({
             id: doc.id,
@@ -44,6 +44,7 @@ class Posts extends Component {
         });
     }
   };
+
   render() {
     const { posts, loading } = this.state;
 
@@ -60,7 +61,6 @@ class Posts extends Component {
                 <Text>{item.data.email}</Text>
                 <Text>{item.data.posteo}</Text>
                 <TouchableOpacity
-                  style={styles.likeButton}
                   onPress={() => this.handleLike(item.id, item.data.likes)}
                 >
                   <Icon
@@ -69,7 +69,7 @@ class Posts extends Component {
                     color='#28a745'  
                   />
                 </TouchableOpacity>
-                <Text >
+                <Text>
                   {item.data.likes.length} {item.data.likes.length === 1 ? 'like' : 'likes'}
                 </Text>
               </View>
@@ -80,6 +80,4 @@ class Posts extends Component {
     );
   }
 }
-
-
-export default Posts;
+export default PostCard;

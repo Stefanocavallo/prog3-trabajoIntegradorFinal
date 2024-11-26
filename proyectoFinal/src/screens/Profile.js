@@ -7,7 +7,7 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailUser: '',
+            emailUser: auth.currentUser ? auth.currentUser.email : "",
             userName: '',
             userPosts: [],
         };
@@ -44,14 +44,14 @@ class Profile extends Component {
                         });
                         this.setState({
                             postsUser: posts,
-                            isLoading: false
                         });
                     },
                     error => {
                         console.error(error);
-                        this.setState({ isLoading: false });
                     }
                 );
+            }else{
+                this.props.navigation.navigate("Login");
             }
         });
     }

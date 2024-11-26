@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { auth, db } from "../firebase/config";
+import PostCard from '../components/postCard';
 
 class Home extends Component  {
     constructor(props) {
@@ -59,7 +60,7 @@ class Home extends Component  {
             <View>
                 <Text>¡Bienvenido!</Text>
                 <Text>Novedades</Text>
-                <Posts />
+                <PostCard />
             </View>
         );
     }

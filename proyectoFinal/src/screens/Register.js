@@ -17,7 +17,7 @@ class Register extends Component {
 
   handleSubmit() {
     auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() =>
+      .then((response) =>
         this.setState({ registered: true }),
         db.collection("users").add({
           email: this.state.email,
@@ -25,9 +25,7 @@ class Register extends Component {
           createdAt: Date.now()
         })
       )
-      .then(
-        () => this.props.navigation.navigate("Login")
-      )
+      .then(() => this.props.navigation.navigate("Login"))
       .catch(error => this.setState({ error: "Fallo el registro" }))
   }
 
@@ -51,7 +49,7 @@ class Register extends Component {
           onChangeText={text => this.setState({ password: text })}
           value={this.state.password} />
         <TouchableOpacity
-          onPress={() => this.handleSubmit()}
+          onPress={() => this.handleSubmit(this.state.email, this.state.password, this.state.userName)}
           style={[styles.button, styles.buttonSecondary]} >
           <Text>Acceder</Text>
         </TouchableOpacity>
